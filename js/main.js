@@ -7,18 +7,19 @@ let total = 0;
 
 const iva = 1.21;
 
-function Producto (nombre, precio, cantidad){
+function Producto (nombre, precio, cantidad, id){
     this.nombre = nombre,
     this.precio = precio,
     this.cantidad = cantidad
+    this.id = id
 }
 
-let producto1 = new Producto('Remera tema cucurucho', 500, 0);
-let producto2 = new Producto('Remera tema sunday', 500, 0);
-let producto3 = new Producto('Remera tema palito', 500, 0);
-let producto4 = new Producto('Remera tema helado', 500, 0);
-let producto5 = new Producto('Calendario de helado', 70, 0);
-let producto6 = new Producto('Poster de helado', 200, 0);
+let producto1 = new Producto('Remera tema cucurucho', 500, 0, 'uno');
+let producto2 = new Producto('Remera tema sunday', 500, 0, 'dos');
+let producto3 = new Producto('Remera tema palito', 500, 0, 'tres');
+let producto4 = new Producto('Remera tema helado', 500, 0, 'cuatro');
+let producto5 = new Producto('Calendario de helado', 70, 0, 'cinco');
+let producto6 = new Producto('Poster de helado', 200, 0, 'seis');
 
 /*------------------------------ Creación de HTML desde JS ------------------------------*/
 let contenedor = document.getElementById('productos');
@@ -28,10 +29,31 @@ const productos = [ {nombre: producto1.nombre, precio: producto1.precio},
                     {nombre: producto4.nombre, precio: producto4.precio},
                     {nombre: producto5.nombre, precio: producto5.precio},
                     {nombre: producto6.nombre, precio: producto6.precio}];
+
+for(const producto of productos){
+    let cartaDeProducto = document.createElement('article');
+    cartaDeProducto.innerHTML = `   <h5>${producto.nombre}</h5>
+                                    <p>$ ${producto.precio} + IVA</p>
+                                    <input id="${producto.id}" type="submit" value="comprar">`;
+    contenedor.appendChild(cartaDeProducto);
+}
 /*------------------------------ Creación de HTML desde JS ------------------------------*/
 
+let compraUno = document.getElementById('uno');
+let compraDos = document.getElementById('dos');
+let compraTres = document.getElementById('tres');
+let compraCuatro = document.getElementById('cuatro');
+let compraCinco = document.getElementById('cinco');
+let compraSeis = document.getElementById('seis');
 
-alert('Bienvenid@ al sistema de compras. A continuación podrá ver los productos que tenemos para ofrecerle. Presione aceptar para continuar.');
+compraUno.onclick = () => {console.log('Compra realizada')};
+compraDos.onclick = () => {console.log('Compra realizada')};
+compraTres.onclick = () => {console.log('Compra realizada')};
+compraCuatro.onclick = () => {console.log('Compra realizada')};
+compraCinco.onclick = () => {console.log('Compra realizada')};
+compraSeis.onclick = () => {console.log('Compra realizada')};
+
+/*alert('Bienvenid@ al sistema de compras. A continuación podrá ver los productos que tenemos para ofrecerle. Presione aceptar para continuar.');
 
 while(consultaProducto){
     alert(  'Producto 1:               ' + producto1.nombre + '               $' + producto1.precio + ' + IVA. ' +
@@ -82,29 +104,16 @@ while(consultaProducto){
     let caracter = prompt ('¿Desea comprar otro producto? (Ingrese "1" para ingresar otro o "0" para terminar)');
 
     if(caracter == 0){
-        // Calculo total de carrito sin IVA
         carrito.forEach(producto => {
             neto += (producto.precio * producto.cantidad);
         });
 
-        // Agrego el IVA
         total = neto * iva;
 
-        // Devuelvo el total
         alert(  '                                   El monto de la compra es:                                        ' +
                 'Precio neto: $ ' + neto + 'Precio final: $ ' + total);
-        // Cierro el ciclo
         consultaProducto=0;
     }else if(caracter != 1){
         alert("La opción ingresada no es válida");
     }
-}
-
-/*------------------------------ Creación de HTML desde JS ------------------------------*/
-for(const producto of productos){
-    let cartaDeProducto = document.createElement('article');
-    cartaDeProducto.innerHTML = `   <h5>${producto.nombre}</h5>
-                                    <p>$ ${producto.precio} + IVA</p>`;
-    contenedor.appendChild(cartaDeProducto);
-}
-/*------------------------------ Creación de HTML desde JS ------------------------------*/
+}*/
